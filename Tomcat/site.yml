@@ -1,0 +1,25 @@
+---
+# This playbook deploys a simple Tomcat 7 cluster behind an HAProxy. 
+
+- hosts: all
+  remote_user: vagrant
+  sudo: yes
+
+  roles:
+   - common
+
+- hosts: webserver
+  remote_user: vagrant
+  sudo: yes
+
+  roles:
+    - java
+    - tomcat
+    - webapp
+
+- hosts: lbserver
+  remote_user: vagrant
+  sudo: yes
+  
+  roles:
+    - haproxy
